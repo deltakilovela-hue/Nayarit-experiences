@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b252b">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Otra perspectiva de Nayarit. Explora aventura, aviación, transporte, hospedaje y servicios privados en Nayarit.">
+  <title>Nayarit Experiences — Otra perspectiva</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="./assets/hero.webp" imagesrcset="./assets/hero-mobile.webp 960w, ./assets/hero.webp 2400w" imagesizes="100vw">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./editorial.css">
+  <script src="./script.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header" data-header>
+    <a class="brand" href="#inicio" aria-label="Nayarit Experiences, inicio">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 28 19 9l16 19M12 28l7-9 8 9M5 33c5-4 10 4 15 0s10 4 15 0"/></svg>
+      <span><strong>NAYARIT</strong><small>EXPERIENCES</small></span>
+    </a>
+    <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
+      <a href="#experiencias">Experiencias</a><a href="/privadas/">Privadas</a><a href="/blog/">Blog</a>
+      <a href="#solicitud" class="button header-cta" data-magnetic>Planea tu experiencia <span aria-hidden="true">↗</span></a>
+    </nav>
+    <button class="menu-toggle icon-button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true"><img src="./assets/hero.webp" srcset="./assets/hero-mobile.webp 960w, ./assets/hero.webp 2400w" sizes="100vw" width="2400" height="1600" alt="" fetchpriority="high"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-light" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow hero-enter"><span class="status-dot"></span> HECHO PARA DESCUBRIR NAYARIT</p>
+        <h1 id="hero-title" class="hero-enter">Lo extraordinario<br>está <em>más cerca.</em></h1>
+        <p class="hero-description hero-enter">Un paisaje que sorprende. Una historia que se queda.<br class="desktop-only"> Aventura, estancias y momentos privados para vivir Nayarit a tu manera.</p>
+        <div class="hero-actions hero-enter">
+          <a href="#experiencias" class="button button-lime" data-magnetic>Encuentra tu experiencia <span class="button-arrow" aria-hidden="true">↗</span></a>
+          <a href="#como-funciona" class="quiet-link">Así empieza tu viaje <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-coordinate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></svg><span>NAYARIT, MÉXICO<small>La naturaleza pone el escenario.</small></span></div>
+        <a href="#experiencias" class="discover-cue"><span>DESLIZA PARA EXPLORAR</span><span class="circle-arrow" aria-hidden="true">↓</span></a>
+        <button class="hero-preview" data-open-experience="capomo" aria-label="Explorar Ruta Capomo en RZR"><img src="./assets/capomo.webp" width="1200" height="900" alt="RZR de referencia" decoding="async"><span><small>EXPLORA ALGO DIFERENTE</small><strong>Ruta Capomo · RZR</strong></span><span aria-hidden="true">↗</span></button>
+      </div>
+      <span class="hero-photo-note">Paisaje de Nayarit · Fotografía de inspiración</span>
+    </section>
+
+    <section class="discovery section-pad" id="experiencias" aria-labelledby="experiences-title">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">01 / EXPLORA A TU MANERA</p><h2 id="experiences-title">Elige cómo quieres<br><em>recordarlo.</em></h2></div>
+        <p>Del cielo a la montaña, de la playa a tu mesa.<br>Elige una experiencia o combina servicios para<br class="desktop-only"> diseñar una estancia a tu medida.</p>
+      </div>
+      <div class="catalog-toolbar reveal">
+        <div class="filter-list" role="group" aria-label="Filtrar por categoría"></div>
+        <span class="catalog-status"><span class="status-dot"></span> EXPERIENCIAS Y SERVICIOS · BAJO CONSULTA</span>
+      </div>
+      <div class="experience-grid" id="experience-grid"></div>
+      <p class="catalog-note">Consulta experiencias y servicios sin reservar. La cobertura, el precio y la disponibilidad se confirman con el proveedor. Fotografías de inspiración; no representan inventario disponible ni proveedores afiliados.</p>
+      <p class="sr-only" id="filter-status" role="status" aria-live="polite"></p>
+
+      <div class="journey reveal" id="como-funciona">
+        <div class="journey-visual"><img src="./assets/tepic.webp" alt="Vista de Tepic con el cerro Sangangüey al atardecer" width="1200" height="1533" loading="lazy"><span>DE AQUÍ.<br><em>Para ir más allá.</em></span><small>TEPIC, NAYARIT</small></div>
+        <div class="journey-content"><p class="eyebrow">TÚ IMAGINAS. NOSOTROS CONECTAMOS.</p><h3>Una gran experiencia<br>empieza con <em>una conversación.</em></h3>
+          <ol>
+            <li><span>01</span><div><h4>Comparte tu idea</h4><p>Qué te gustaría vivir, con quién y cuándo.</p></div></li>
+            <li><span>02</span><div><h4>Encontramos el punto de conexión</h4><p>Nayarit Experiences califica tu interés y lo canaliza al proveedor adecuado.</p></div></li>
+            <li><span>03</span><div><h4>El proveedor define los detalles</h4><p>Disponibilidad, precio, condiciones, confirmación y cierre corresponden al proveedor.</p></div></li>
+          </ol>
+          <p class="bridge-note">Somos tu puente de contacto. La solicitud no es una reservación.</p>
+        </div>
+      </div>
+      <div class="future-strip reveal"><div><p class="eyebrow">EL VIAJE APENAS COMIENZA</p><h3>Más formas de vivir Nayarit.</h3><p>Categorías por incorporar. Aún no disponibles.</p></div><ul><li>Viñedos</li><li>Restaurantes</li><li>Day pass</li></ul></div>
+    </section>
+
+<!-- EDITORIAL:START -->
+<section class="private-section section-pad" id="privadas"><div class="private-intro"><div><p class="eyebrow">PRIVADAS / HECHAS A TU MEDIDA</p><h2>Tu gente.<br>Tu tiempo.<br><em>Tu Nayarit.</em></h2></div><div><p>Hay viajes que se disfrutan más cuando se sienten propios. Una casa para compartir, una mesa especial o una escapada con los detalles que importan para ustedes.</p><p>Cuéntanos lo que imaginas y combina tus intereses. Cada servicio se consulta con el proveedor que pueda darle forma.</p><a class="quiet-link" href="/privadas/">Explora las experiencias privadas <span aria-hidden="true">↗</span></a></div></div><div class="private-plans"><article class="private-plan"><div class="private-plan-photo"><img src="/assets/villa.webp" alt="Fotografía de inspiración, servicio bajo consulta" width="1200" height="800" loading="lazy"><span>ESTANCIAS PARA COMPARTIR</span></div><div class="private-plan-copy"><h3>Una casa. Todo tu mundo.</h3><p>Imagina una estancia en la playa, la llegada resuelta y una cena que reúna a todos.</p><ul><li>Casa de lujo</li><li>Transporte privado</li><li>Chef privado</li></ul><a href="/?interes=casas-lujo&amp;complementos=transporte-privado,chef-privado#solicitud" class="journal-link">Quiero un plan así <span aria-hidden="true">↗</span></a></div></article><article class="private-plan"><div class="private-plan-photo"><img src="/assets/mixologia.webp" alt="Fotografía de inspiración, servicio bajo consulta" width="1200" height="800" loading="lazy"><span>CELEBRACIONES CON INTENCIÓN</span></div><div class="private-plan-copy"><h3>La noche es de ustedes.</h3><p>Dale forma a una cena y una barra con el estilo de tu reunión, en el espacio que elijas.</p><ul><li>Chef privado</li><li>Mixología privada</li></ul><a href="/?interes=chef-privado&amp;complementos=mixologia-privada#solicitud" class="journal-link">Quiero un plan así <span aria-hidden="true">↗</span></a></div></article><article class="private-plan"><div class="private-plan-photo"><img src="/assets/hospedaje.webp" alt="Fotografía de inspiración, servicio bajo consulta" width="1200" height="800" loading="lazy"><span>ESCAPADAS A TU MEDIDA</span></div><div class="private-plan-copy"><h3>Tu estancia, a tu ritmo.</h3><p>Encuentra tu manera de descansar y consulta los traslados que conectan tu viaje.</p><ul><li>Hospedaje</li><li>Transporte privado</li></ul><a href="/?interes=hospedaje&amp;complementos=transporte-privado#solicitud" class="journal-link">Quiero un plan así <span aria-hidden="true">↗</span></a></div></article></div><p class="private-disclaimer">Combinaciones de inspiración, no paquetes confirmados. Cada servicio requiere disponibilidad, propuesta y confirmación del proveedor. Fotografías de referencia.</p></section>
+<section class="home-journal section-pad" id="blog"><div class="section-heading"><div><p class="eyebrow">EL JOURNAL / INSPIRACIÓN PARA TU VIAJE</p><h2>Antes del viaje,<br><em>una buena historia.</em></h2></div><a class="journal-link" href="/blog/">Explora el blog <span aria-hidden="true">↗</span></a></div><div class="journal-grid"><article class="journal-card " data-article data-category="Destinos"><a href="/blog/escapada-privada-punta-de-mita/" class="journal-photo"><img src="/assets/coast.webp" alt="Imagen de inspiración para Punta de Mita a tu manera: cómo imaginar una escapada privada" width="1200" height="800" loading="lazy"><span class="journal-category">Destinos</span><span class="journal-arrow" aria-hidden="true">↗</span></a><div class="journal-copy"><p class="journal-meta">NAYARIT EXPERIENCES <span>· 2 MIN DE LECTURA</span></p><h3><a href="/blog/escapada-privada-punta-de-mita/">Punta de Mita a tu manera: cómo imaginar una escapada privada</a></h3><p>Una guía para combinar estancia, transporte y experiencias privadas en Punta de Mita, empezando por lo que tu grupo necesita.</p><a class="journal-link" href="/blog/escapada-privada-punta-de-mita/">Leer historia <span aria-hidden="true">↗</span></a></div></article><article class="journal-card " data-article data-category="Gastronomía"><a href="/blog/chef-mixologia-privada-nayarit/" class="journal-photo"><img src="/assets/chef.webp" alt="Imagen de inspiración para Chef y mixología privada: una celebración empieza en tu mesa" width="1200" height="800" loading="lazy"><span class="journal-category">Gastronomía</span><span class="journal-arrow" aria-hidden="true">↗</span></a><div class="journal-copy"><p class="journal-meta">NAYARIT EXPERIENCES <span>· 2 MIN DE LECTURA</span></p><h3><a href="/blog/chef-mixologia-privada-nayarit/">Chef y mixología privada: una celebración empieza en tu mesa</a></h3><p>Cómo preparar la idea de una cena y una barra privada en Nayarit: ocasión, menú, bebidas, espacio y alcance del servicio.</p><a class="journal-link" href="/blog/chef-mixologia-privada-nayarit/">Leer historia <span aria-hidden="true">↗</span></a></div></article><article class="journal-card " data-article data-category="Aventura"><a href="/blog/ruta-capomo-rzr-nayarit/" class="journal-photo"><img src="/assets/capomo.webp" alt="Imagen de inspiración para Ruta Capomo en RZR: cómo integrar una aventura a tu viaje por Nayarit" width="1200" height="800" loading="lazy"><span class="journal-category">Aventura</span><span class="journal-arrow" aria-hidden="true">↗</span></a><div class="journal-copy"><p class="journal-meta">NAYARIT EXPERIENCES <span>· 2 MIN DE LECTURA</span></p><h3><a href="/blog/ruta-capomo-rzr-nayarit/">Ruta Capomo en RZR: cómo integrar una aventura a tu viaje por Nayarit</a></h3><p>Prepara tu consulta sobre Ruta Capomo con Dirty Monkey Adventure y conecta esa idea con el resto de tu estancia.</p><a class="journal-link" href="/blog/ruta-capomo-rzr-nayarit/">Leer historia <span aria-hidden="true">↗</span></a></div></article></div></section>
+<!-- EDITORIAL:END -->
+    <section class="request-section section-pad" id="solicitud" aria-labelledby="request-title">
+      <div class="request-intro reveal"><p class="eyebrow">02 / TU SIGUIENTE HISTORIA</p><h2 id="request-title">¿Y si empiezas<br>por <em>imaginarlo?</em></h2><p>Cuéntanos qué tienes en mente.<br>Una fecha, una celebración o simplemente<br>las ganas de hacer algo diferente.</p>
+        <div class="request-photo"><img src="./assets/coast.webp" alt="Vista aérea de la playa en Punta Mita, Nayarit" width="989" height="1800" loading="lazy"><span>Nayarit, desde otra mirada.<svg viewBox="0 0 70 28" aria-hidden="true"><path d="M1 18c15-28 23 21 37-7s20 1 30 0m-7-6 7 6-9 2"/></svg></span></div>
+        <div class="demo-note"><span class="status-dot"></span><p><strong>Estás explorando el MVP privado.</strong>Prepara y revisa tu solicitud. En esta versión tus datos no se envían ni se guardan.</p></div>
+      </div>
+      <div class="form-shell reveal">
+        <div class="form-heading"><span class="form-symbol" aria-hidden="true">↗</span><div><p class="eyebrow">VAMOS A CONOCER TU IDEA</p><h3>Tu experiencia, a tu medida.</h3></div></div>
+        <form id="interest-form" novalidate>
+          <div class="two-col"><label for="request-name">Nombre completo <span>*</span><input id="request-name" name="name" required autocomplete="name" minlength="2" maxlength="100" placeholder="¿Cómo te llamas?" aria-describedby="name-error"><small class="field-error" id="name-error"></small></label>
+          <label for="request-phone">WhatsApp <span>*</span><input id="request-phone" name="phone" required type="tel" autocomplete="tel" maxlength="22" placeholder="311 123 4567" aria-describedby="phone-error"><small class="field-error" id="phone-error"></small></label></div>
+          <label for="request-experience">¿Qué experiencia o servicio te interesa? <span>*</span><select id="request-experience" name="experience" required aria-describedby="experience-error"><option value="">Selecciona tu experiencia</option></select><small class="field-error" id="experience-error"></small></label>
+          <div class="two-col"><label for="request-people">Personas <span>*</span><input id="request-people" name="people" type="number" min="1" max="100" step="1" required placeholder="Ej. 2" aria-describedby="people-error"><small class="field-error" id="people-error"></small></label><label for="request-date"><span data-date-label>Fecha tentativa</span> <span class="optional" data-date-badge>Opcional</span><input id="request-date" name="date" type="date" aria-describedby="date-error"><small class="field-error" id="date-error"></small></label></div>
+          <fieldset class="service-brief" id="service-brief" hidden><legend>Los detalles de tu plan</legend><p class="brief-hint">Esto nos ayuda a orientar tu solicitud.</p><div class="brief-grid"></div></fieldset>
+          <fieldset class="complementary-services"><legend>¿Quieres complementar tu plan? <small>Opcional</small></legend><div class="complementary-options"></div></fieldset>
+          <label for="request-details">Cuéntanos un poco más <span class="optional">Opcional</span><textarea id="request-details" name="details" rows="3" maxlength="1000" placeholder="Preferencias, equipaje, amenidades o esa idea especial…"></textarea></label>
+          <label class="consent" for="request-consent"><input id="request-consent" name="consent" type="checkbox" required aria-describedby="consent-error"><span>Entiendo que esta solicitud no confirma una reservación ni disponibilidad. El proveedor confirma y realiza el cierre.</span></label><small class="field-error" id="consent-error"></small>
+          <button class="button button-dark" type="submit">Preparar mi solicitud <span aria-hidden="true">↗</span></button>
+          <p class="form-status" role="alert" aria-live="polite"></p><p class="form-footnote">Sin pagos · Sin compromiso · Atención personalizada</p>
+        </form>
+        <div class="success-state" hidden tabindex="-1"><span class="success-icon" aria-hidden="true">✓</span><p class="eyebrow">LISTA PARA REVISAR</p><h3>Tu idea ya tiene<br>un punto de partida.</h3><p class="success-copy"></p><dl class="request-summary"></dl><p class="success-disclaimer">Esta es una vista previa. No se ha enviado ni almacenado tu solicitud.</p><button class="button button-dark" data-edit-request>Editar mi solicitud <span aria-hidden="true">↗</span></button><button class="text-button" data-new-request>Empezar de nuevo</button></div>
+      </div>
+      <footer><a class="brand" href="#inicio"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 28 19 9l16 19M12 28l7-9 8 9M5 33c5-4 10 4 15 0s10 4 15 0"/></svg><span><strong>NAYARIT</strong><small>EXPERIENCES</small></span></a><p>Un puente hacia experiencias extraordinarias.</p><div><button class="text-button" data-credits>Créditos fotográficos</button><span>© <span data-year></span> · Vista privada</span></div></footer>
+    </section>
+  </main>
+  <dialog class="detail-dialog" aria-labelledby="detail-title"><button class="dialog-close icon-button" aria-label="Cerrar ficha">×</button><div class="detail-content"></div></dialog>
+  <dialog class="credits-dialog" aria-labelledby="credits-title"><button class="dialog-close icon-button" aria-label="Cerrar créditos">×</button><h2 id="credits-title">Una mirada compartida.</h2><p>Fotografías de inspiración, utilizadas bajo la licencia de Unsplash. No representan proveedores afiliados ni una oferta confirmada.</p><ul><li><a href="https://unsplash.com/photos/I2hA6Kmn29U" target="_blank" rel="noopener noreferrer">Costa de Nayarit — Emmanuel Appiah ↗</a></li><li><a href="https://unsplash.com/photos/JyjKyCbVpyg" target="_blank" rel="noopener noreferrer">Punta Mita — David Anderson ↗</a></li><li><a href="https://unsplash.com/photos/OM6JtCungUs" target="_blank" rel="noopener noreferrer">Tepic — Javier Garcia Chavez ↗</a></li><li><a href="https://unsplash.com/photos/w9KTlrW7rOU" target="_blank" rel="noopener noreferrer">Aeronave — Kamil Pietrzak ↗</a></li><li><a href="https://unsplash.com/photos/lm_3ZjH61r0" target="_blank" rel="noopener noreferrer">Cabina — Sigmund ↗</a></li><li><a href="https://unsplash.com/photos/GP5HzcrKciI" target="_blank" rel="noopener noreferrer">RZR de referencia — them snapshots ↗</a></li><li><a href="https://unsplash.com/photos/A2CEg2omFJI" target="_blank" rel="noopener noreferrer">Chef — Martin Baron ↗</a></li><li><a href="https://unsplash.com/photos/dfae7jtxCM8" target="_blank" rel="noopener noreferrer">Mixología — Diana Díaz ↗</a></li><li><a href="https://unsplash.com/photos/OEkwyGpBIDU" target="_blank" rel="noopener noreferrer">Casa de inspiración — Amine Ben Mohamed ↗</a></li><li><a href="https://unsplash.com/photos/uZoA9WaygLQ" target="_blank" rel="noopener noreferrer">Hospedaje — Antonio Araujo ↗</a></li><li><a href="https://unsplash.com/photos/XDZsJnC5z6s" target="_blank" rel="noopener noreferrer">Transporte — Nikolay Dimitrov ↗</a></li></ul></dialog>
+  <noscript><div class="noscript-note">Activa JavaScript para explorar las fichas y preparar tu solicitud.</div></noscript>
+</body>
+</html>
