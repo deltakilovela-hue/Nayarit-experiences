@@ -1,5 +1,6 @@
 import { experiences, categories, providers, complementaryIds } from './catalog.js';
-const $ = (selector, root = document) => root.querySelector(selector);
+import { webhookUrl } from './config.js';
+const $ =(selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const header = $('[data-header]');
 const menu = $('.menu-toggle');
@@ -169,13 +170,68 @@ for (const eventName of ['input','change']) form.addEventListener(eventName,even
   const field=event.target;
   if(field.getAttribute('aria-invalid')==='true')validateField(field);
 });
-form.addEventListener('submit', event => {
+const submitButton = $('button[type="submit"]', form);
+function applyLiveCopy() {
+  if (!webhookUrl) return;
+  $('.demo-note p').innerHTML = '<strong>Solicitud sin compromiso.</strong>Cuéntanos tu idea y te contactamos por WhatsApp para orientarte.';
+  submitButton.firstChild.textContent = 'Enviar mi solicitud ';
+  $('.consent span').textContent = 'Entiendo que esta solicitud no confirma una reservación ni disponibilidad. El proveedor confirma y realiza el cierre. Autorizo que me contacten por WhatsApp con los datos que envío.';
+  $('.success-state .eyebrow').textContent = 'SOLICITUD RECIBIDA';
+  $('.success-disclaimer').textContent = 'Recibimos tu solicitud. El proveedor confirma disponibilidad, condiciones y precio; te contactaremos por WhatsApp.';
+  $('[data-edit-request]').hidden = true;
+}
+function buildPayload(data, item) {
+  const payload = new URLSearchParams();
+  const fullName = String(data.get('name')).trim();
+  const [firstName, ...rest] = fullName.split(/\s+/);
+  const complements = data.getAll('complements').map(id => experiences.find(entry => entry.id === id)?.name).filter(Boolean);
+  const provider = item?.providerIds.length ? providers.find(entry => item.providerIds.includes(entry.id))?.name : '';
+  const add = (key, value) => { if (value !== undefined && value !== null && String(value).trim() !== '') payload.append(key, String(value).trim()); };
+  add('name', fullName);
+  add('first_name', firstName);
+  add('last_name', rest.join(' '));
+  add('phone', data.get('phone'));
+  add('experience', data.get('experience'));
+  add('category', item ? categoryLabel(item.categoryId) : '');
+  add('people', data.get('people'));
+  add('date', data.get('date'));
+  add('details', data.get('details'));
+  add('complements', complements.join(', '));
+  add('reference_provider', provider);
+  (item?.briefFields || []).forEach(definition => add('brief_' + definition.name, data.get('brief_' + definition.name)));
+  add('consent', 'true');
+  add('source', 'nayarit-experiences.deltakilo.com.mx');
+  add('page_url', location.origin + location.pathname);
+  add('submitted_at', new Date().toISOString());
+  const incomingParams = new URLSearchParams(location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => add(key, incomingParams.get(key)));
+  return payload;
+}
+async function sendToWebhook(payload) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10000);
+  try {
+    // Solicitud "simple" en modo no-cors: llega a cualquier receptor sin depender de CORS, pero la respuesta es opaca.
+    await fetch(webhookUrl, { method: 'POST', body: payload, mode: 'no-cors', keepalive: true, signal: controller.signal });
+  } finally { clearTimeout(timer); }
+}
+applyLiveCopy();
+form.addEventListener('submit', async event => {
   event.preventDefault();
+  if (submitButton.disabled) return;
   const invalid = allFields().filter(field=>!validateField(field));
   if (invalid.length) { $('.form-status').textContent='Revisa los campos señalados para continuar.';invalid[0].focus();return; }
   $('.form-status').textContent='';
   const data = new FormData(form);
-  $('.success-copy').textContent = `${String(data.get('name')).trim().split(/\s+/)[0]}, así se ve la solicitud que preparaste.`;
+  if (webhookUrl) {
+    submitButton.disabled = true;
+    $('.form-status').textContent = 'Enviando tu solicitud…';
+    try { await sendToWebhook(buildPayload(data, activeExperience())); }
+    catch { $('.form-status').textContent = 'No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo.'; submitButton.disabled = false; return; }
+    submitButton.disabled = false;
+    $('.form-status').textContent = '';
+  }
+  $('.success-copy').textContent = webhookUrl ? `${String(data.get('name')).trim().split(/\s+/)[0]}, este es el resumen de tu solicitud.` : `${String(data.get('name')).trim().split(/\s+/)[0]}, así se ve la solicitud que preparaste.`;
   const summary = $('.request-summary');summary.replaceChildren();
   const item=activeExperience();
   const formatDate = value => new Date(`${value}T12:00:00`).toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});

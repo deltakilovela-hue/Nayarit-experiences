@@ -1,6 +1,6 @@
 # Nayarit Experiences — MVP privado
 
-Sitio responsive en HTML, CSS y JavaScript nativos, desplegado en Sites con acceso exclusivo al propietario. No requiere dependencias en producción. El formulario prepara un resumen en memoria: no transmite ni persiste datos.
+Sitio responsive en HTML, CSS y JavaScript nativos, desplegado en Sites con acceso exclusivo al propietario. No requiere dependencias en producción. El formulario prepara un resumen en pantalla y, si se configura un webhook en `dist/config.js`, envía la solicitud a esa URL (ver «Webhook del formulario»). Sin URL configurada no transmite ni persiste datos.
 
 ## Diseño y navegación
 
@@ -18,6 +18,7 @@ Las fotos se alojan en el mismo sitio; la carga inicial no requiere solicitudes 
 
 - `dist/index.html`: estructura, formulario, semántica y créditos fotográficos.
 - `dist/styles.css`: sistema visual, breakpoints y animaciones.
+- `dist/config.js`: URL del webhook del formulario (vacía = modo vista previa).
 - `dist/catalog.js`: experiencias, categorías y estructura de proveedores.
 - `dist/script.js`: filtros, fichas, formulario y movimiento progresivo.
 - `dist/assets/`: imágenes WebP e isotipo SVG propio.
@@ -31,6 +32,10 @@ Las fotos se alojan en el mismo sitio; la carga inicial no requiere solicitudes 
 Para revisar localmente: ejecutar `python3 -m http.server 4173 --directory dist` y abrir http://localhost:4173. Los módulos requieren un servidor HTTP.
 
 Al editar artículos o planes: ejecutar `node scripts/build-editorial.mjs`. No editar directamente las páginas generadas ni el bloque `EDITORIAL:START` / `EDITORIAL:END` de la portada. No hay dependencias de compilación externas.
+
+## Webhook del formulario
+
+`dist/config.js` exporta `webhookUrl`. Vacía: el formulario solo muestra el resumen (los textos indican que no se envía nada). Con una URL: al enviar, valida igual que antes y hace un POST `application/x-www-form-urlencoded` (modo `no-cors`, sin depender de CORS) con: `name`, `first_name`, `last_name`, `phone`, `experience`, `category`, `people`, `date`, `details`, `complements`, `reference_provider`, `brief_*` (campos contextuales del servicio), `consent`, `source`, `page_url`, `submitted_at` y `utm_*` si vienen en la URL. Con `no-cors` la respuesta es opaca: solo se detectan fallos de red, no errores HTTP del receptor; probar siempre con un envío real. La URL queda visible en el código público de la página. Al activarla cambian los textos de la página (botón, consentimiento, confirmación) y se oculta «Editar mi solicitud» para evitar reenvíos.
 
 ## Contenido y crecimiento
 
