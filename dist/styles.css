@@ -16,3 +16,5 @@ dialog{border:0;padding:0;color:var(--ink);border-radius:22px;max-height:90svh;o
 @media(min-width:1200px){.experience-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 22px}.card-photo-button{height:230px}.card-body{padding:21px}.card-body h3{font-size:25px}.card-body p{font-size:12px}.card-topline{font-size:8px;min-height:22px}.card-badge{font-size:8px;left:14px;top:14px}.card-source{min-height:30px}.card-body>h3{min-height:54px}}
 @media(max-width:760px){.filter-list{flex-wrap:wrap;overflow:visible;gap:6px}.filter{font-size:10px;padding:9px 11px;border-color:#dde3d5}.catalog-status{font-size:7px}.brief-grid{grid-template-columns:1fr}.source-panel{padding:15px}.complementary-choice{padding:10px 12px;min-height:40px}.service-brief{padding:16px}.detail-body .detail-facts{grid-template-columns:1fr 1fr}.request-summary>div{grid-template-columns:95px 1fr}}
 @media(max-width:370px){.detail-body .detail-facts{grid-template-columns:1fr}.request-summary>div{grid-template-columns:78px 1fr}}
+/* Precio de referencia en las fichas de aviación. */
+.card-price{font-size:12px;font-weight:600;color:var(--ink);line-height:1.4;margin:0 0 6px}

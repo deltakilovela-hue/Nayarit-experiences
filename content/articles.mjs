@@ -133,6 +133,10 @@ export const articles = [
     service: 'panoramico', complements: ['transporte-privado'],
     lead: 'Hay ideas que comienzan mirando al cielo. Tal vez quieras contemplar un paisaje desde otra perspectiva, compartir un regalo o acercarte al mundo de la aviación. Explicar esa motivación es el primer paso.',
     sections: [
+      {title:'Servicios aéreos que puedes consultar', paragraphs:[
+        'Estas son las formas de volar que hoy puedes consultar en el catálogo. El taxi aéreo conecta la sierra y la costa de Nayarit y también los aeropuertos de Puerto Vallarta, Guadalajara, Mazatlán, Zacatecas y Durango. Los paseos en avión recorren las playas de Nayarit, el Río Santiago y las presas hidroeléctricas La Yesca, El Cajón y Aguamilpa. Y las revelaciones de sexo o género llevan el anuncio a una celebración en familia.',
+        'Como referencia, un paseo de una hora para tres personas cuesta $7,500 MXN; el taxi aéreo a pueblos y comunidades de la sierra, $7,900 MXN en un vuelo especial para tres personas; y una revelación dentro de la ciudad de Tepic, desde $4,500 MXN. Son cifras orientativas: el proveedor confirma ruta, disponibilidad, condiciones y cotización final.'
+      ]},
       {title:'Elige el propósito antes que la ruta', paragraphs:[
         'Para una consulta de vuelo panorámico, cuenta qué paisaje o región te interesa y con quién te gustaría compartir la experiencia. Si tu idea gira alrededor de una celebración, explica el lugar, la fecha y el tipo de momento que imaginas.',
         'No necesitas llegar con una operación diseñada. Es el proveedor quien debe determinar qué puede realizar, dónde y bajo qué condiciones. Una buena solicitud describe el objetivo y deja los detalles operativos a quien puede confirmarlos.'
@@ -149,6 +153,6 @@ export const articles = [
         'Nayarit Experiences inicia su historia con la aviación y amplía su catálogo para que puedas conectar distintas partes de tu viaje. Puedes explorar una idea aérea y añadir interés en transporte o estancia sin convertir esa combinación en un paquete confirmado.',
         'Nuestro papel es reunir y orientar tu solicitud. La evaluación, disponibilidad, precio y cierre corresponden al proveedor. Empieza por contarnos qué te gustaría recordar de la experiencia; los detalles se construyen a partir de una propuesta viable.'
       ]}
-    ], checklist:['Motivo de la experiencia','Zona o paisaje de interés','Personas y fecha tentativa','Preguntas para el proveedor'], cta:'Consultar una experiencia aérea'
+    ], checklist:['Motivo de la experiencia','Zona o paisaje de interés, u origen y destino si buscas taxi aéreo','Personas y fecha tentativa','Preguntas para el proveedor'], cta:'Consultar una experiencia aérea'
   }
 ];

@@ -4,7 +4,7 @@ Sitio responsive en HTML, CSS y JavaScript nativos, desplegado en Sites con acce
 
 ## Diseño y navegación
 
-Portada fotográfica, catálogo, experiencias privadas, blog y solicitud. El catálogo tiene diez fichas en siete categorías: aventura, aviación, transporte, hospedaje, casas de lujo, chef privado y mixología. La selección se lleva al formulario, que conserva los datos al editar la vista previa.
+Portada fotográfica, catálogo, experiencias privadas, blog y solicitud. El catálogo tiene once fichas en siete categorías: aventura, aviación, transporte, hospedaje, casas de lujo, chef privado y mixología. La selección se lleva al formulario, que conserva los datos al editar la vista previa.
 
 El formulario adapta sus campos al servicio principal: recogida y modalidad para Ruta Capomo; origen, destino, hora y tipo de viaje para transporte; entrada, salida, zona, habitaciones y presupuesto para estancias; zona, ocasión y cocina para chef; zona, bebidas y duración para mixología. Permite combinar intereses mediante casillas. Los borradores por servicio permanecen únicamente en memoria y se eliminan al reiniciar o recargar. No se solicitan datos de pago ni se escriben leads.
 
@@ -41,11 +41,11 @@ Al editar artículos o planes: ejecutar `node scripts/build-editorial.mjs`. No e
 
 `categories` distingue `inquiry` de `planned`. Viñedos, restaurantes y day pass siguen planeados. `experiences` usa IDs estables, `categoryId`, `providerIds`, `status`, textos, imagen y `briefFields`. El renderizado de filtros y selección deriva de este modelo.
 
-`providers` incluye Dirty Monkey Adventure como referencia documental, con `partnership: not_confirmed`, fuente oficial y fecha de consulta. No significa alianza, reserva ni inventario. Ruta Capomo se distingue expresamente de una salida privada. Los demás servicios no tienen proveedores asignados. Las casas y fotografías no representan inmuebles disponibles.
+`providers` incluye Dirty Monkey Adventure como referencia documental, con `partnership: not_confirmed`, fuente oficial y fecha de consulta. No significa alianza, reserva ni inventario. Ruta Capomo se distingue expresamente de una salida privada. Los demás servicios no tienen proveedores asignados; las tres fichas de aviación con precio de referencia (Vuelo panorámico, Taxi aéreo, Revelación de género) siguen sin proveedor nombrado. Las casas y fotografías no representan inmuebles disponibles.
 
 Fuente de Ruta Capomo: https://dirtymonkeyadventure.com/es/tour/nayarit-route-capomo (consultada el 13 de septiembre de 2026). Los datos publicados pueden cambiar; el operador confirma vigencia y cotización. No se utiliza su fotografía ni su logotipo.
 
-Para integrar más adelante, validar registros de proveedor con IDs estables y estados explícitos, relacionarlos con las experiencias y definir un endpoint propio para recepción y calificación de leads. Cualquier CRM, mensajería, pagos, analítica o cambio de audiencia requiere autorización. La confirmación y cierre siempre corresponden al proveedor. No hay tarifas base ni inventario confirmados. El cargo adicional mencionado en Ruta Capomo se atribuye a la fuente oficial.
+Para integrar más adelante, validar registros de proveedor con IDs estables y estados explícitos, relacionarlos con las experiencias y definir un endpoint propio para recepción y calificación de leads. Cualquier CRM, mensajería, pagos, analítica o cambio de audiencia requiere autorización. La confirmación y cierre siempre corresponden al proveedor. No hay inventario confirmado. Los precios de referencia de aviación (campo `price` en `dist/catalog.js`, en MXN, recibidos en octubre de 2026) son orientativos: el proveedor confirma cotización final y disponibilidad. Ajustarlos o retirarlos es editar ese campo. El cargo adicional mencionado en Ruta Capomo se atribuye a la fuente oficial.
 
 ## Blog y posicionamiento
 

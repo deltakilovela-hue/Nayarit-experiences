@@ -20,19 +20,25 @@ const aviationExperiences = [
     id: 'panoramico', categoryId: 'aviacion', providerIds: [], status: 'inquiry', filter: 'paisajes',
     name: 'Vuelo panorámico', tag: 'PARA CAMBIAR DE PERSPECTIVA', badge: 'Paisajes que se quedan', image: 'coast.webp', imagePosition: '50% 48%',
     alt: 'Vista aérea del mar turquesa y la playa de Punta Mita, Nayarit',
-    description: 'Redescubre los paisajes, la costa y la ciudad desde una perspectiva que se queda contigo.',
-    detail: 'Imagina compartir una vista diferente de Nayarit con alguien especial. Cuéntanos qué paisaje te gustaría conocer para consultar una propuesta de vuelo panorámico con un proveedor.',
+    description: 'Recorre desde el aire las playas de Nayarit, el Río Santiago y las presas hidroeléctricas.',
+    detail: 'Paseos en avión para conocer las playas de Nayarit, el Río Santiago y las presas hidroeléctricas La Yesca, El Cajón y Aguamilpa. Cuéntanos qué recorrido te interesa, con quién viajarías y una fecha tentativa para consultar una propuesta con el proveedor.',
     occasion: 'Escapada, regalo o celebración',
-    considerations: ['Comparte tu zona o paisaje de interés.', 'Indica cuántas personas viajarían y una fecha tentativa.', 'El proveedor define ruta, duración, capacidad y condiciones operativas.']
+    price: '$7,500 MXN por hora · para tres personas',
+    facts: [['Recorridos de referencia', 'Playas de Nayarit · Río Santiago · Presas La Yesca, El Cajón y Aguamilpa']],
+    considerations: ['Elige el recorrido que te interesa: playas, Río Santiago y presas, o una combinación.', 'Referencia: la hora de paseo para tres personas es de $7,500 MXN. El proveedor confirma ruta, duración, capacidad y condiciones.', 'Indica cuántas personas viajarían y una fecha tentativa.'],
+    briefFields: [
+      { name:'zone', label:'Recorrido de interés', options:['Por definir','Playas de Nayarit','Río Santiago y presas (La Yesca, El Cajón, Aguamilpa)','Combinar recorridos'] }
+    ]
   },
   {
     id: 'revelacion', categoryId: 'aviacion', providerIds: [], status: 'inquiry', filter: 'celebraciones',
     name: 'Revelación de género', tag: 'UN MOMENTO PARA COMPARTIR', badge: 'Celebraciones', image: 'aircraft.webp', imagePosition: '50% 52%',
     alt: 'Aeronave ligera en tierra al atardecer; fotografía de referencia',
     description: 'Explora una idea desde el aire para convertir ese gran anuncio en un recuerdo especial.',
-    detail: 'Cada celebración es distinta. Comparte tu idea, el lugar del evento y la fecha para consultar si un proveedor puede desarrollar una propuesta aérea adecuada para la ocasión.',
+    detail: 'El proveedor aéreo ofrece revelaciones de sexo o género del bebé. Dentro de la ciudad de Tepic el costo es desde $4,500 MXN. Comparte tu idea, el lugar del evento y la fecha para que el proveedor confirme la dinámica y su viabilidad.',
     occasion: 'Una celebración en familia',
-    considerations: ['Comparte el municipio y tipo de espacio de tu evento.', 'La dinámica se define únicamente después de revisar su viabilidad.', 'No se promete un sobrevuelo, lanzamiento de materiales ni una operación específica.']
+    price: 'Desde $4,500 MXN · dentro de la ciudad de Tepic',
+    considerations: ['Comparte el municipio y el tipo de espacio de tu evento.', 'Dentro de la ciudad de Tepic el costo es desde $4,500 MXN; fuera de Tepic, solicita cotización al proveedor.', 'La dinámica, su viabilidad y las condiciones se confirman con el proveedor antes de reservar.']
   },
   {
     id: 'especial', categoryId: 'aviacion', providerIds: [], status: 'inquiry', filter: 'descubrir',
@@ -53,6 +59,25 @@ const aviationExperiences = [
     considerations: ['Cuéntanos si es tu primer acercamiento a la aviación.', 'La edad mínima, el acompañamiento y las actividades dependen del proveedor.', 'No implica formación certificada ni garantiza que puedas operar los controles.']
   }
 ];
+
+const taxiAereo = {
+  id: 'taxi-aereo', categoryId: 'aviacion', providerIds: [], status: 'inquiry',
+  name: 'Taxi aéreo', tag: 'TU RUTA, DESDE EL AIRE', badge: 'Aviación · Bajo consulta', image: 'aircraft.webp', imagePosition: '50% 46%',
+  alt: 'Aeronave ligera en tierra al atardecer; fotografía de referencia',
+  description: 'Vuela a la sierra o la costa de Nayarit, o conecta con aeropuertos de Puerto Vallarta, Guadalajara, Mazatlán, Zacatecas y Durango.',
+  detail: 'Consulta el servicio de taxi aéreo hacia la sierra y la costa de Nayarit y desde o hacia los aeropuertos de Puerto Vallarta, Guadalajara, Mazatlán, Zacatecas y Durango. Indica origen, destino, fecha y pasajeros para que el proveedor confirme la ruta, la disponibilidad y la cotización.',
+  occasion: 'Traslados a la sierra, la costa o entre ciudades',
+  price: 'Sierra de Nayarit: $7,900 MXN · vuelo para tres personas',
+  facts: [['Cobertura', 'Sierra y costa de Nayarit · Aeropuertos de Puerto Vallarta, Guadalajara, Mazatlán, Zacatecas y Durango']],
+  considerations: ['Indica origen, destino, fecha, hora aproximada y número de pasajeros.', 'Referencia: el taxi aéreo a pueblos y comunidades de la sierra cuesta $7,900 MXN en un vuelo especial para tres personas. Para rutas a aeropuertos o a la costa, solicita cotización.', 'El proveedor confirma ruta, disponibilidad, equipaje permitido, condiciones y cotización final.'],
+  briefFields: [
+    { name:'origin', label:'Origen', placeholder:'Aeropuerto, pista o localidad', required:true },
+    { name:'destination', label:'Destino', placeholder:'Puerto Vallarta, Guadalajara, sierra o costa de Nayarit…', required:true },
+    { name:'time', label:'Hora aproximada', type:'time' },
+    { name:'trip', label:'Tipo de vuelo', options:['Por definir','Solo ida','Viaje redondo'] }
+  ],
+  photoNote: 'Fotografía de inspiración; no representa la aeronave ni al proveedor.'
+};
 
 const newExperiences = [
   {
@@ -152,5 +177,5 @@ const newExperiences = [
     ]
   }
 ];
-export const experiences = [newExperiences[0], aviationExperiences[0], ...newExperiences.slice(1), ...aviationExperiences.slice(1)];
+export const experiences = [newExperiences[0], aviationExperiences[0], taxiAereo, ...newExperiences.slice(1), ...aviationExperiences.slice(1)];
 export const complementaryIds = ['transporte-privado','hospedaje','casas-lujo','chef-privado','mixologia-privada'];
