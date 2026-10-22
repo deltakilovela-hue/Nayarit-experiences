@@ -1,0 +1,215 @@
+/* «Arma tu plan»: recorrido en tres pasos y mapa interactivo de Nayarit. */
+.plan{position:relative;color:#e8efe6;background:radial-gradient(900px 520px at 88% -8%,#17454d 0,transparent 62%),radial-gradient(700px 420px at -5% 108%,#123941 0,transparent 60%),var(--navy)}
+.plan .section-heading h2{color:#fff}
+.plan .section-heading h2 em{color:var(--lime)}
+.plan .section-heading>p{color:#aebfbc}
+.plan .eyebrow{color:var(--lime)}
+.plan-shell{margin-top:44px}
+
+/* Pasos */
+.plan-steps{display:flex;gap:8px;list-style:none;margin:0 0 14px;padding:0}
+.plan-steps li{flex:1;min-width:0}
+.plan-steps button{width:100%;display:flex;align-items:center;gap:10px;padding:9px 14px 9px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#b8c8c5;font:inherit;font-size:12px;letter-spacing:.02em;cursor:pointer;transition:background .3s var(--ease),border-color .3s,color .3s}
+.plan-steps button i{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);font-style:normal;font-size:11px;font-weight:600;transition:inherit}
+.plan-steps button[aria-current=step]{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+.plan-steps button[aria-current=step] i{background:var(--navy);color:var(--lime)}
+.plan-steps button.done i{background:var(--lime);color:var(--navy)}
+.plan-steps button:disabled{opacity:.42;cursor:not-allowed}
+.plan-steps button:not(:disabled):not([aria-current=step]):hover{border-color:var(--lime);color:#fff}
+.plan-progress{height:3px;margin:0 0 26px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.plan-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--lime),var(--gold));transition:width .6s var(--ease)}
+
+/* Disposición */
+.plan-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:22px;align-items:start}
+.plan-stage{min-height:560px;padding:30px;border:1px solid rgba(255,255,255,.1);border-radius:26px;background:rgba(255,255,255,.045)}
+.plan-map-wrap{position:sticky;top:96px}
+.plan-view.enter{animation:plan-in .55s var(--ease) both}
+@keyframes plan-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.plan-stage h3{margin:0 0 8px;font-size:clamp(26px,3vw,36px);line-height:1.08;color:#fff;font-weight:500}
+.plan-stage .eyebrow{margin-bottom:16px}
+.plan-lead{margin:0 0 22px;font-size:14px;line-height:1.6;color:#aebfbc}
+.plan-sub{margin:22px 0 10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.plan-fine{margin:14px 0 0;font-size:11px;line-height:1.55;color:#8fa4a1}
+.plan-fine strong,.plan-route strong{color:#fff;font-weight:600}
+.plan-stage h5{margin:0 0 8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* Paso 1: mosaicos con foto */
+.plan-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{position:relative;aspect-ratio:4/3.3;padding:0;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:#0f2f35;color:#fff;text-align:left;cursor:pointer;transition:border-color .3s,transform .4s var(--ease),box-shadow .4s}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.82);transition:transform .8s var(--ease),filter .4s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,23,27,.92))}
+.tile:hover{transform:translateY(-3px)}
+.tile:hover img{transform:scale(1.09);filter:saturate(1.05) brightness(.95)}
+.tile-copy{position:absolute;z-index:1;left:12px;right:12px;bottom:11px}
+.tile-copy strong{display:block;font-size:17px;font-weight:600}
+.tile-copy small{display:block;margin-top:2px;font-size:10px;line-height:1.35;color:#d4dfda}
+.tile .check{position:absolute;z-index:1;top:10px;right:10px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--lime);color:var(--navy);font-size:13px;font-weight:700;transform:scale(0);transition:transform .4s var(--ease)}
+.tile[aria-pressed=true]{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),0 14px 34px #0005}
+.tile[aria-pressed=true] .check{transform:scale(1)}
+.plan-presets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.preset{position:relative;display:flex;align-items:center;gap:12px;padding:9px 12px 9px 9px;text-align:left;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.04);color:#fff;font:inherit;cursor:pointer;transition:border-color .3s,background .3s,transform .4s var(--ease)}
+.preset:hover{transform:translateY(-2px);border-color:var(--lime);background:rgba(212,232,175,.08)}
+.preset img{flex:none;width:58px;height:58px;border-radius:11px;object-fit:cover}
+.preset span{min-width:0}
+.preset strong{display:block;font-size:13px;font-weight:600;line-height:1.25}
+.preset small{display:block;margin-top:3px;font-size:10.5px;line-height:1.4;color:#9db1ae}
+.preset i{margin-left:auto;font-style:normal;color:var(--lime);transition:transform .3s var(--ease)}
+.preset:hover i{transform:translate(2px,-2px)}
+
+/* Paso 2: tarjeta del punto */
+.plan-card{padding:20px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:linear-gradient(160deg,rgba(212,232,175,.1),rgba(255,255,255,.03))}
+.plan-card h4{margin:2px 0 6px;font-size:24px;font-weight:500;color:#fff}
+.plan-card p{margin:0;font-size:13px;line-height:1.6;color:#c4d2cf}
+.plan-card-empty{text-align:left}
+.plan-card-empty h4{font-size:20px}
+.plan-kicker{font-size:10px!important;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)!important}
+.exp-list{display:flex;flex-wrap:wrap;gap:8px}
+.exp-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 10px 8px 13px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.05);color:#fff;font:inherit;font-size:12px;text-align:left;cursor:pointer;transition:border-color .3s,background .3s}
+.exp-chip .exp-name{font-weight:600}
+.exp-chip small{display:block;max-width:190px;font-size:10px;line-height:1.35;color:var(--gold)}
+.exp-chip i{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.12);font-style:normal;font-size:13px}
+.exp-chip:hover{border-color:var(--lime)}
+.exp-chip[aria-pressed=true]{border-color:var(--lime);background:rgba(212,232,175,.14)}
+.exp-chip[aria-pressed=true] i{background:var(--lime);color:var(--navy)}
+.plan-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.plan-route{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;line-height:1.5;color:#e8efe6}
+.plan-route em{font-style:normal;color:var(--gold)}
+.plan-points{margin-top:18px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
+.plan-points summary{cursor:pointer;font-size:12px;color:var(--lime);list-style:none}
+.plan-points summary::-webkit-details-marker{display:none}
+.plan-points summary::after{content:" ▾"}
+.plan-points[open] summary::after{content:" ▴"}
+.plan-points>div{margin-top:14px}
+.point-list{display:flex;flex-wrap:wrap;gap:6px}
+.point-list button{padding:6px 11px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:transparent;color:#d6e2df;font:inherit;font-size:11px;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.point-list button:hover,.point-list button[aria-pressed=true]{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+
+/* Botones */
+.plan-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .3s,border-color .3s,color .3s,transform .3s var(--ease)}
+.plan-btn:hover:not(:disabled){border-color:var(--lime);transform:translateY(-1px)}
+.plan-btn.ghost{background:transparent}
+.plan-btn.is-on{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+.plan-btn.primary{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+.plan-btn:disabled{opacity:.4;cursor:not-allowed}
+.plan-link{padding:0;border:0;background:none;color:var(--lime);font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* Paso 3: plan */
+.plan-row{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:13px;color:#e8efe6}
+.plan-row>span{flex:none;width:62px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.plan-row em{font-style:normal;color:var(--gold)}
+.opt-group{margin-top:18px}
+.opt-list{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;padding:12px 14px;text-align:left;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.04);color:#fff;font:inherit;cursor:pointer;transition:border-color .3s,background .3s}
+.opt:hover{border-color:var(--lime)}
+.opt[aria-pressed=true]{border-color:var(--lime);background:rgba(212,232,175,.12)}
+.opt-check{display:grid;place-items:center;flex:none;width:22px;height:22px;margin-top:1px;border:1.5px solid rgba(255,255,255,.4);border-radius:7px;color:var(--navy);font-size:13px;font-weight:700;transition:background .3s,border-color .3s}
+.opt[aria-pressed=true] .opt-check{background:var(--lime);border-color:var(--lime)}
+.opt-body strong{display:block;font-size:14px;font-weight:600}
+.opt-body small{display:block;margin-top:2px;font-size:11.5px;line-height:1.5;color:#a8bbb8}
+.opt-body em{display:block;margin-top:6px;font-style:normal;font-size:11px;color:var(--gold)}
+.plan-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.plan-fields label{display:flex;flex-direction:column;gap:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.plan-fields input{padding:11px 13px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px;letter-spacing:0;text-transform:none;color-scheme:dark}
+.plan-fields input:focus{outline:none;border-color:var(--lime)}
+.plan-prices{margin-top:20px;padding:14px 16px;border-radius:14px;background:rgba(221,192,152,.1);border:1px solid rgba(221,192,152,.25)}
+.plan-prices ul{margin:0;padding:0;list-style:none;font-size:12.5px;line-height:1.7;color:#e8efe6}
+
+/* Barra de resumen */
+.plan-bar{position:sticky;bottom:14px;z-index:6;display:flex;align-items:center;gap:14px;margin-top:20px;padding:10px 10px 10px 20px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(14,43,49,.92);backdrop-filter:blur(14px);box-shadow:0 22px 50px #0007}
+.bar-summary{display:flex;flex-wrap:nowrap;gap:6px;flex:1;min-width:0;overflow:hidden;font-size:11.5px;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.bar-summary span{flex:none;padding:5px 11px;border-radius:999px;background:rgba(212,232,175,.14);color:#e8f1d8;white-space:nowrap}
+.bar-summary em{font-style:normal;color:#8fa4a1;font-size:12px}
+.bar-actions{display:flex;gap:8px;flex:none}
+
+/* Mapa */
+.plan-map{position:relative;aspect-ratio:1/1;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:26px;background:#0a2a30;box-shadow:0 30px 80px #0006;--k:1}
+.map-svg{display:block;width:100%;height:100%;touch-action:manipulation}
+.map-sea{fill:#0a2a30}
+.state{fill:#16393f;stroke:#0d2c32;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.state.is-nayarit{fill:#cfe3a8;stroke:#9fbb70;stroke-width:1.2}
+.st-label text{fill:#7fa0a3;font:600 10px/1 inherit;font-family:inherit;letter-spacing:.24em;text-anchor:middle;pointer-events:none;opacity:.8}
+.st-label text.big{fill:#4f6b3a;font-size:13px;letter-spacing:.42em;opacity:.55}
+.map-river{fill:none;stroke:#5fbac7;stroke-opacity:.5;stroke-width:1.3;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;transition:stroke-opacity .4s,stroke-width .4s}
+.map-river.main{stroke-opacity:.8;stroke-width:1.8}
+.hl-river .map-river.main{stroke:#2fd3e6;stroke-opacity:1;stroke-width:3.2;stroke-dasharray:2 7;stroke-linecap:round;animation:plan-flow 1.6s linear infinite}
+.map-coast{fill:none;stroke:var(--gold);stroke-width:3.4;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .5s}
+.hl-coast .map-coast{opacity:1;filter:drop-shadow(0 0 5px #ddc098aa)}
+@keyframes plan-flow{to{stroke-dashoffset:-18}}
+.line-hit{fill:none;stroke:transparent;stroke-width:20;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:pointer;outline:none}
+.line-hit:focus-visible{stroke:rgba(212,232,175,.35)}
+
+/* Pines */
+.pin{cursor:pointer;outline:none;transition:opacity .35s}
+.pin.is-hidden{opacity:0;pointer-events:none}
+.map-svg:not(.show-air) .pin.aeropuerto:not(.is-selected){opacity:0;pointer-events:none}
+.pin-hit{fill:transparent}
+.pin .dot{fill:var(--lime);stroke:#0b252b;stroke-width:2;transition:fill .3s}
+.pin .ring,.pin .match{fill:none;stroke:var(--lime);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.pin .match{stroke:var(--gold);stroke-width:2;stroke-dasharray:3 3}
+.pin.is-match .match{opacity:.95;animation:plan-spin 9s linear infinite}
+.pin:hover .ring,.pin:focus-visible .ring{opacity:.9}
+.pin.is-selected .ring{opacity:1;animation:plan-ring 1.8s ease-out infinite}
+.pin.is-selected .dot{fill:#fff}
+.pin.is-place .dot{fill:#ff9d6c}
+.pin.dam .dot{fill:var(--gold)}
+.pin.airport .halo{fill:#0b252b;stroke:#8fb3b6;stroke-width:1.2}
+.pin.airport .dot{fill:#fff;stroke:none}
+.pin.zona .zone{fill:rgba(221,192,152,.18);stroke:var(--gold);stroke-width:1.6;stroke-dasharray:4 4;transform-box:fill-box;transform-origin:center;animation:plan-spin 24s linear infinite}
+.pin.zona .dot{fill:var(--gold)}
+.pin.cluster .dot{stroke-width:2.5}
+.cluster-n{fill:#0b252b;font:700 12px/1 inherit;font-family:inherit;text-anchor:middle;pointer-events:none}
+.pin .lbl{fill:#0b252b;font:600 12px/1 inherit;font-family:inherit;paint-order:stroke;stroke:#e6f1cf;stroke-width:3.2px;stroke-linejoin:round;pointer-events:none}
+.pin.airport .lbl,.pin.zona .lbl{fill:#eaf3f1;stroke:#0a2a30}
+.pin .badge{fill:#fff;font:700 10px/1 inherit;font-family:inherit;paint-order:stroke;stroke:#0b252b;stroke-width:3px;pointer-events:none}
+@keyframes plan-ring{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.9);opacity:0}}
+@keyframes plan-spin{to{transform:rotate(360deg)}}
+
+/* Ruta de taxi aéreo */
+.route-base{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.route-line{fill:none;stroke:#fff;stroke-width:2.4;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:plan-draw 1.3s var(--ease) forwards}
+@keyframes plan-draw{to{stroke-dashoffset:0}}
+.plane-glyph{fill:#fff;stroke:#0b252b;stroke-width:1.2;paint-order:stroke}
+.route-km rect{fill:#0b252b;stroke:rgba(255,255,255,.35)}
+.route-km text{fill:#fff;font:600 11px/1 inherit;font-family:inherit;text-anchor:middle}
+
+/* Controles sobre el mapa */
+.map-regions{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.map-regions::-webkit-scrollbar{display:none}
+.map-regions button{flex:none;padding:7px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(9,32,37,.78);backdrop-filter:blur(8px);color:#dce8e5;font:inherit;font-size:11px;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.map-regions button:hover{border-color:var(--lime)}
+.map-regions button[aria-pressed=true]{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+.map-legend{position:absolute;left:14px;bottom:12px;display:flex;gap:12px;padding:7px 12px;border-radius:999px;background:rgba(9,32,37,.72);backdrop-filter:blur(8px);font-size:10px;color:#c4d4d1;pointer-events:none}
+.map-legend span{display:flex;align-items:center;gap:6px}
+.lg{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--lime)}
+.lg.dam{border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.lg.air{border-radius:50%;background:#fff;box-shadow:0 0 0 2px #0b252b,0 0 0 3px #8fb3b6}
+.map-tip{position:absolute;z-index:3;display:flex;flex-direction:column;gap:2px;padding:7px 11px;border-radius:10px;background:#fff;color:var(--navy);font-size:12px;line-height:1.25;pointer-events:none;transform:translate(-50%,-100%);box-shadow:0 10px 30px #0006;white-space:nowrap}
+.map-tip span{font-size:10px;color:#5b7176}
+.map-tip[hidden]{display:none}
+
+.plan :focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.map-svg :focus-visible{outline:none}
+
+@media(max-width:980px){
+  .plan-layout{grid-template-columns:1fr}
+  .plan-map-wrap{position:static;order:-1}
+  .plan-map{aspect-ratio:1/1.05;border-radius:22px}
+  .plan-shell[data-current="1"] .plan-map-wrap{display:none}
+  .plan-stage{min-height:0;padding:22px 18px;border-radius:22px}
+}
+@media(max-width:620px){
+  .plan-steps button{padding:7px 8px 7px 7px;font-size:11px;gap:7px}
+  .plan-steps button i{width:22px;height:22px}
+  .plan-tiles{grid-template-columns:1fr 1fr}
+  .plan-presets{grid-template-columns:1fr}
+  .plan-fields{grid-template-columns:1fr}
+  .plan-bar{border-radius:20px;padding:10px 10px 10px 14px;gap:10px;flex-wrap:wrap;bottom:10px}
+  .bar-summary{flex:1 1 100%;order:2;mask-image:none;flex-wrap:wrap}
+  .bar-actions{flex:1 1 100%;order:1;justify-content:flex-end}
+  .plan-row{flex-direction:column;gap:2px}
+  .plan-row>span{width:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  .plan *,.plan *::before,.plan *::after{animation:none!important;transition:none!important}
+  .route-line{stroke-dashoffset:0}
+}

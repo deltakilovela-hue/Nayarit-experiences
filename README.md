@@ -19,6 +19,9 @@ Las fotos se alojan en el mismo sitio; la carga inicial no requiere solicitudes 
 - `dist/index.html`: estructura, formulario, semántica y créditos fotográficos.
 - `dist/styles.css`: sistema visual, breakpoints y animaciones.
 - `dist/config.js`: URL del webhook del formulario (vacía = modo vista previa).
+- `dist/plan.js`, `dist/plan.css`: «Arma tu plan», el recorrido en tres pasos con el mapa interactivo (ver más abajo).
+- `dist/map-data.js`: puntos, zonas, ideas de plan y qué quiere vivir el prospecto. Es lo que se edita para agregar un lugar.
+- `dist/map-geo.js`: contorno y ríos ya proyectados a SVG. Se genera con `scripts/build-map-geo.mjs`; no editar a mano.
 - `dist/catalog.js`: experiencias, categorías y estructura de proveedores.
 - `dist/script.js`: filtros, fichas, formulario y movimiento progresivo.
 - `dist/assets/`: imágenes WebP e isotipo SVG propio.
@@ -32,6 +35,16 @@ Las fotos se alojan en el mismo sitio; la carga inicial no requiere solicitudes 
 Para revisar localmente: ejecutar `python3 -m http.server 4173 --directory dist` y abrir http://localhost:4173. Los módulos requieren un servidor HTTP.
 
 Al editar artículos o planes: ejecutar `node scripts/build-editorial.mjs`. No editar directamente las páginas generadas ni el bloque `EDITORIAL:START` / `EDITORIAL:END` de la portada. No hay dependencias de compilación externas.
+
+## Arma tu plan y mapa interactivo
+
+La sección `#plan` guía al prospecto en tres pasos: **qué vivir** (mosaicos con foto y cuatro «ideas de plan»), **dónde** (mapa de Nayarit) y **tu plan** (resumen con precios de referencia, personas y fecha). Al terminar, el botón «Preparar mi solicitud» emite el evento `nayarit:apply-plan`; `script.js` lo recibe y **precarga el formulario existente** (servicio principal, complementos, zona u origen y destino, personas, fecha y un resumen en «Tu idea»). El envío y el webhook no cambian. Las ideas de plan son conceptos de viaje, no paquetes confirmados.
+
+El mapa es SVG propio, sin librerías ni solicitudes a terceros (no usa Google Maps ni teselas). Tiene zonas con encuadre animado (Todo Nayarit, Riviera Nayarit, Tepic y costa, Sierra y presas, Rutas de taxi aéreo), puntos agrupados que se abren al acercarse (Riviera Nayarit), el Río Santiago y el litoral resaltados cuando el plan incluye un paseo panorámico, y rutas de taxi aéreo entre dos puntos con distancia en línea recta (solo referencia, no una ruta de vuelo). Es accesible con teclado y tiene una lista de puntos como alternativa al mapa; respeta `prefers-reduced-motion`.
+
+Para agregar o cambiar un lugar basta editar `points` en `dist/map-data.js` (coordenadas `lon`/`lat`, texto y `featured`, los servicios del catálogo que se mencionan). Los textos no deben prometer cobertura que el proveedor no haya confirmado. Para cambiar el encuadre o el detalle del contorno: `node scripts/build-map-geo.mjs` (descarga ~48 MB de Natural Earth).
+
+Fuentes: contorno de estados y ríos de [Natural Earth](https://www.naturalearthdata.com) (dominio público); coordenadas de los puntos de Wikipedia (consultadas el 22 de octubre de 2026). La zona «Sierra de Nayarit» es un punto de referencia (Jesús María), no el área de servicio del proveedor. La Ruta Capomo no se ubica en el mapa porque no se conoce su base.
 
 ## Webhook del formulario
 

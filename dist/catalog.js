@@ -178,4 +178,4 @@ const newExperiences = [
   }
 ];
 export const experiences = [newExperiences[0], aviationExperiences[0], taxiAereo, ...newExperiences.slice(1), ...aviationExperiences.slice(1)];
-export const complementaryIds = ['transporte-privado','hospedaje','casas-lujo','chef-privado','mixologia-privada'];
+export const complementaryIds = ['transporte-privado','hospedaje','casas-lujo','chef-privado','mixologia-privada','taxi-aereo','panoramico','capomo'];

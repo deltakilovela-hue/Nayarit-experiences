@@ -250,6 +250,32 @@ form.addEventListener('submit', async event => {
 function showForm(){success.hidden=true;form.hidden=false;$('.form-heading').hidden=false;}
 $('[data-edit-request]').addEventListener('click',()=>{showForm();form.elements.name.focus();});
 $('[data-new-request]').addEventListener('click',()=>{form.reset();serviceDrafts.clear();selectedComplementIds.clear();activeServiceId=null;syncServiceBrief();fields.forEach(name=>{form.elements[name].removeAttribute('aria-invalid');$(`#${name}-error`).textContent='';});$('.form-status').textContent='';showForm();form.elements.name.focus();});
+// Plan armado en el mapa (plan.js): precarga el formulario existente; el envío y el webhook no cambian.
+document.addEventListener('nayarit:apply-plan', event => {
+  const { experienceIds, people, date, summary, brief } = event.detail;
+  const main = experiences.find(item => item.id === experienceIds[0]);
+  if (!main) return;
+  showForm();
+  selectedComplementIds.clear();
+  experienceIds.slice(1).filter(id => complementaryIds.includes(id) && id !== main.id).forEach(id => selectedComplementIds.add(id));
+  form.elements.experience.value = main.name;
+  syncServiceBrief();
+  const setBrief = (name, value) => {
+    const field = form.elements['brief_' + name];
+    if (!field || !value) return;
+    if (field.tagName === 'SELECT') { const option = [...field.options].find(item => item.textContent === value); if (option) field.value = option.value; }
+    else field.value = value;
+  };
+  setBrief('zone', main.briefFields?.find(definition => definition.name === 'zone')?.options ? brief.zoneOption : brief.zone);
+  setBrief('origin', brief.origin); setBrief('destination', brief.destination); setBrief('pickup', brief.pickup);
+  if (people) form.elements.people.value = people;
+  if (date && date >= today) form.elements.date.value = date;
+  const base = form.elements.details.value.replace(/Plan armado en el mapa:[^\n]*\n?/g, '').trim();
+  form.elements.details.value = [base, summary].filter(Boolean).join('\n').slice(0, 1000);
+  [form.elements.experience, form.elements.people, form.elements.date, ...$$('#service-brief input, #service-brief select')].forEach(field => { if (field.value) validateField(field, false); });
+  $('#solicitud').scrollIntoView({ behavior: reduce.matches ? 'instant' : 'smooth' });
+  form.elements.name.focus({ preventScroll: true });
+});
 $('[data-year]').textContent=new Date().getFullYear();
 
 // Progressive motion: all content is visible if JS or observers are unavailable.
